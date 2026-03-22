@@ -1,18 +1,14 @@
 import psutil
-from datetime import datetime
+import time
 
-def check_system():
-    cpu = psutil.cpu_percent()
+while True:  # This loop runs forever
+    cpu = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory().percent
     disk = psutil.disk_usage('/').percent
 
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"CPU Usage: {cpu}%")
+    print(f"Memory Usage: {memory}%")
+    print(f"Disk Usage: {disk}%")
+    print("-" * 20)  # separator
 
-    print(f"\n[{timestamp}]")
-    print(f"CPU: {cpu}%")
-    print(f"Memory: {memory}%")
-    print(f"Disk: {disk}%")
-
-if __name__ == "__main__":
-    check_system()
-
+    time.sleep(60)  # wait 60 seconds before checking again
